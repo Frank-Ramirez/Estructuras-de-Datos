@@ -1,0 +1,37 @@
+
+CREATE DATABASE proyecto;//crear base de datos
+
+use proyecto;//usar una base de datos
+
+show tables;// para ver las tablas
+
+
+//CREAR TABLAS//
+
+create table materias(id_materias int Primary key, nombrem varchar(20));
+
+create table servicios_escolares(id_escolares int Primary key,usuarios varchar(20),documentos varchar(25));
+
+create table profesor(id_profesor int Primary key,nombrep varchar(20),especialidad varchar(20), constraint fk_id_materias foreign key references materias (id_materias));
+
+create table calificasion(id_calificasion int Primary Key,id_materias int, matricula int (20), numero int (10), constraint fk_id_materias foreign key (id_materias) references materias (id_materias));
+
+create table beca(id_beca int (10) Primary Key,id_calificasion int,tipo varchar(20), constraint fo_id_calificasion foreign key (id_calificasion) references calificasion (id_calificasion));
+
+create table alumno(id_alumno int (10) Primary Key, nombreal varchar(20), grupo varchar(25),turno varchar(25),carrera varchar(25),cuatrimestre int(10));
+
+create table administrador(id_administrador int (10) Primary Key,actualizaciones date);
+
+
+create table registro_alumno(matricula int Primary key, nombrea varchar(20), carrera varchar(20), grupo varchar(20), turno varchar(20));
+
+create table control_de_calificaciones(matricula int Primary key, nombre varchar(20), cuatrimestre varchar(20), promedio varchar(20), grupo varchar(20));
+
+
+//ALTERAR TABLAS FORANEAS//
+alter table calificasion add(constraint calificaion_id_materias_fk foreign key (id_materias) references materias);
+
+FOREIGN KEY (id) REFERENCES calificasion (id);
+
+create table profesor(id_profesor int Primary key, id_materias int, nombrep varchar(20),especialidad varchar(20), constraint fk_id_materias foreign key (id_materias) references materias (id_materias));
+
